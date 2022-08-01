@@ -23,6 +23,18 @@ public class Ingridient {
 	@ManyToOne
 	private Recipe recipe;
 	
+	
+	
+	
+	public Ingridient() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Ingridient(String description, BigDecimal amount, UnitOfMeasure uom) {
+		this.description = description;
+		this.amount = amount;
+		this.uom = uom;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -46,6 +58,12 @@ public class Ingridient {
 	}
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
+	}
+	public UnitOfMeasure getUom() {
+		return uom;
+	}
+	public void setUom(UnitOfMeasure uom) {
+		this.uom = uom;
 	}
 	
 	

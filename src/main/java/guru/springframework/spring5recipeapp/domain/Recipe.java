@@ -1,5 +1,6 @@
 package guru.springframework.spring5recipeapp.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -32,7 +33,7 @@ public class Recipe {
 	@Enumerated (value = EnumType.STRING)
 	private Difficulty difficulty;
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "recipe")
-	private Set<Ingridient> ingridients;
+	private Set<Ingridient> ingridients = new HashSet<>();
 	@Lob
 	private Byte[] image;
 	@OneToOne(cascade = CascadeType.ALL)
@@ -40,7 +41,7 @@ public class Recipe {
 	
 	@ManyToMany
 	@JoinTable(name = "recipe_category",joinColumns = @JoinColumn(name = "recipe_id"),inverseJoinColumns = @JoinColumn(name = "category_id"))
-	private Set<Category> caregory;
+	private Set<Category> caregory = new HashSet<>();;
 	
 	public Long getId() {
 		return id;
@@ -101,6 +102,13 @@ public class Recipe {
 	}
 	public void setNotes(Notes notes) {
 		this.notes = notes;
+		notes.setRecipe(this);
+	}
+	public Recipe addIngridient(Ingridient ingridient)
+	{
+		ingridient.setRecipe(this);
+		this.ingridients.add(ingridient);
+		return this;
 	}
 	public Set<Ingridient> getIngridients() {
 		return ingridients;
