@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
+import lombok.EqualsAndHashCode;
+@EqualsAndHashCode
 @Entity
 public class Notes {
 	@Id
