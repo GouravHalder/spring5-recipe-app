@@ -17,11 +17,12 @@ import guru.springframework.spring5recipeapp.domain.UnitOfMeasure;
 import guru.springframework.spring5recipeapp.repositories.CategoryRepos;
 import guru.springframework.spring5recipeapp.repositories.RecipeRepos;
 import guru.springframework.spring5recipeapp.repositories.UnitOfMeasureRepos;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent>{
-	private final CategoryRepos categoryRepos; 
+	private final CategoryRepos categoryRepos;
 	private final RecipeRepos recipeRepos; 
 	private final UnitOfMeasureRepos unitOfMeasureRepos;
 	public RecipeBootstrap(CategoryRepos categoryRepos, RecipeRepos recipeRepos,
@@ -34,6 +35,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		// TODO Auto-generated method stub
+		log.debug("onApplicationEvent() loading Bootstrap");
 		recipeRepos.saveAll(getRecipes());
 	}
 	public List<Recipe> getRecipes(){
@@ -73,15 +75,16 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		guaRecipe.setPrepTime(10);
 		guaRecipe.setCookTime(10);
 		guaRecipe.setDifficulty(Difficulty.EASY);
-		guaRecipe.setDescription("bola jabe na recipe ta");
+		guaRecipe.setServings(2);
+		guaRecipe.setDescription("Chicken Curry");
 		guru.springframework.spring5recipeapp.domain.Notes guaNotes = new guru.springframework.spring5recipeapp.domain.Notes();
 		guaNotes.setRecipeNotes("This is Recipe Notes");
 		//guaNotes.setRecipe(guaRecipe);
 		guaRecipe.setNotes(guaNotes);
 		//guaRecipe.getIngridients().add(new Ingridient("1st Ingridient", new BigDecimal(2), optionalUomTSP.get(),guaRecipe));
 		guaRecipe.addIngridient(new Ingridient("1st Ingridient", new BigDecimal(2), optionalUomTSP.get()));
-		guaRecipe.getCaregory().add(optionalCatInd.get());
-		guaRecipe.getCaregory().add(optionalCatMex.get());
+		guaRecipe.getCategory().add(optionalCatInd.get());
+		guaRecipe.getCategory().add(optionalCatMex.get());
 		System.out.println("Adding Guarecipe is List");
 		recipes.add(guaRecipe);
 		
@@ -90,7 +93,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		tacoRecipe.setPrepTime(20);
 		tacoRecipe.setCookTime(20);
 		tacoRecipe.setDifficulty(Difficulty.MODERATE);
-		tacoRecipe.setDescription("etao bola jabe na recipe ta");
+		tacoRecipe.setServings(5);
+		tacoRecipe.setDescription("Mutton Biriyani");
 		guru.springframework.spring5recipeapp.domain.Notes tacoNotes = new guru.springframework.spring5recipeapp.domain.Notes();
 		tacoNotes.setRecipeNotes("This is TACO Notes");
 		tacoNotes.setRecipe(tacoRecipe);
@@ -98,10 +102,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		//tacoRecipe.getIngridients().add(new Ingridient("1st Ingridient", new BigDecimal(2), optionalUomTSP.get(),tacoRecipe));
 		//tacoRecipe.getIngridients().add(new Ingridient("2nd Ingridient", new BigDecimal(2), optionalUomTBSP.get(),tacoRecipe));
 		//tacoRecipe.getIngridients().add(new Ingridient("3rd Ingridient", new BigDecimal(2), optionalUomCUP.get(),tacoRecipe));
-		tacoRecipe.addIngridient(new  Ingridient("1st Ingridient", new BigDecimal(2), optionalUomTSP.get()));
+		tacoRecipe.addIngridient(new  Ingridient("1st Ingridient", new BigDecimal(1), optionalUomTSP.get()));
 		tacoRecipe.addIngridient(new  Ingridient("2nd Ingridient", new BigDecimal(2), optionalUomTSP.get()));
-		tacoRecipe.addIngridient(new  Ingridient("3rd Ingridient", new BigDecimal(2), optionalUomTSP.get()));
-		tacoRecipe.getCaregory().add(optionalCatInd.get());
+		tacoRecipe.addIngridient(new  Ingridient("3rd Ingridient", new BigDecimal(3), optionalUomTSP.get()));
+		tacoRecipe.getCategory().add(optionalCatInd.get());
 		System.out.println("Adding tacoRecipe is List");
 		recipes.add(tacoRecipe);
 		return recipes;
