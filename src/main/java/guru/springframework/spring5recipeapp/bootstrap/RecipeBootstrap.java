@@ -29,7 +29,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		super();
 		this.categoryRepos = categoryRepos;
 		this.recipeRepos = recipeRepos;
-		this.unitOfMeasureRepos = unitOfMeasureRepos;
+		this.unitOfMeasureRepos = unitOfMeasureRepos; 
 	}
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
