@@ -21,7 +21,7 @@ import guru.springframework.spring5recipeapp.repositories.UnitOfMeasureRepos;
 
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent>{
-	private final CategoryRepos categoryRepos;
+	private final CategoryRepos categoryRepos; 
 	private final RecipeRepos recipeRepos; 
 	private final UnitOfMeasureRepos unitOfMeasureRepos;
 	public RecipeBootstrap(CategoryRepos categoryRepos, RecipeRepos recipeRepos,
