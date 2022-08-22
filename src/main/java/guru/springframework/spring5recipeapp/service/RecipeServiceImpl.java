@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import guru.springframework.spring5recipeapp.commands.RecipeCommand;
@@ -53,6 +55,7 @@ public class RecipeServiceImpl implements RecipeService{
 
 
 	@Override
+	@Transactional
 	public RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand) {
 		// TODO Auto-generated method stub
 		//return recipeToRecipeCommand.convert(recipeRepos.save(recipeCommandToRecipe.convert(recipeCommand)));
@@ -60,6 +63,24 @@ public class RecipeServiceImpl implements RecipeService{
         Recipe savedRecipe = recipeRepos.save(detachedRecipe);
         log.debug("Saved RecipeId:" + savedRecipe.getId());
         return recipeToRecipeCommand.convert(savedRecipe);
+	}
+	@Override
+	@Transactional
+	public RecipeCommand findCommandById(Long l) {
+		// TODO Auto-generated method stub
+		log.debug("In SLF4J loggin of findCommandById() in ReceiServiceImpl");
+		Optional<Recipe> optionalRecipe= recipeRepos.findById(l);
+		if (!optionalRecipe.isPresent())
+		{
+			throw new RuntimeException();
+		}
+		return recipeToRecipeCommand.convert(optionalRecipe.get());
+	}
+	@Override
+	public void deleteById(Long l) {
+		// TODO Auto-generated method stub
+		log.debug("In SLF4J loggin of deleteById() in ReceiServiceImpl");
+		recipeRepos.deleteById(l);
 	}
 
 }

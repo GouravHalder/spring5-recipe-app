@@ -71,12 +71,13 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 			throw new RuntimeException("Mexican Category not present");
 		}
 		Recipe guaRecipe=new Recipe();
-		guaRecipe.setDescription("Perfect Guacamole");
 		guaRecipe.setPrepTime(10);
 		guaRecipe.setCookTime(10);
 		guaRecipe.setDifficulty(Difficulty.EASY);
 		guaRecipe.setServings(2);
 		guaRecipe.setDescription("Chicken Curry");
+		guaRecipe.setDirections("Cooking Chicken curry");
+		guaRecipe.setUrl("https://www.google.com");
 		guru.springframework.spring5recipeapp.domain.Notes guaNotes = new guru.springframework.spring5recipeapp.domain.Notes();
 		guaNotes.setRecipeNotes("This is Recipe Notes");
 		//guaNotes.setRecipe(guaRecipe);
@@ -89,11 +90,12 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		recipes.add(guaRecipe);
 		
 		Recipe tacoRecipe=new Recipe();
-		tacoRecipe.setDescription("Chocken Taco");
 		tacoRecipe.setPrepTime(20);
-		tacoRecipe.setCookTime(20);
+		tacoRecipe.setCookTime(50);
 		tacoRecipe.setDifficulty(Difficulty.MODERATE);
+		tacoRecipe.setDirections("Cooking Mutton Biriyani");
 		tacoRecipe.setServings(5);
+		tacoRecipe.setUrl("https://www.youtube.com/watch?v=CF0t8Dz8khE");
 		tacoRecipe.setDescription("Mutton Biriyani");
 		guru.springframework.spring5recipeapp.domain.Notes tacoNotes = new guru.springframework.spring5recipeapp.domain.Notes();
 		tacoNotes.setRecipeNotes("This is TACO Notes");
